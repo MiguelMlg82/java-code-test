@@ -1,6 +1,8 @@
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CodeTest {
     public static void main(String[] args) {
@@ -10,6 +12,12 @@ public class CodeTest {
         String[] myArray = new String[] {"1", "2", "3"};
         String[] result = reverseArray(myArray);
         System.out.println(Arrays.asList(result));
+        
+        
+        System.out.println("STEP 2");
+        String[] myArray2 = {"a", "b", "c"};
+        String[] result2 = uppercaseArray(myArray2);
+        System.out.println(Arrays.asList(result2));
     }
 
     public static String[] reverseArray(String[] input) {
@@ -22,8 +30,12 @@ public class CodeTest {
     }
 
     public static String[] uppercaseArray(String[] input) {
-        // add code here
-        return input;
+    	if (input != null)  {
+    		List<String> myArrayList = Arrays.asList(input).stream().map(s -> s.toUpperCase()).collect(Collectors.toList());
+            return myArrayList.toArray(new String[myArrayList.size()]);	
+    	} else {
+    		return new String[0];
+    	}
     }
 
     public static int findWordCount(String text, String wordToFind) {

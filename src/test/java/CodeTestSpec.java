@@ -25,7 +25,14 @@ public class CodeTestSpec {
 
     @Test
     public void uppercaseArray_returnsExpectedResult() {
-
+    	// arrange
+    	final String[] EXPECTED = {"A", "B", "C"};
+    	
+    	// act
+    	final String[] actual = CodeTest.uppercaseArray(new String[] {"a", "b", "c"});
+    	
+    	// assert
+    	assertArrayEquals(EXPECTED, actual);
     }
 
     @Test
