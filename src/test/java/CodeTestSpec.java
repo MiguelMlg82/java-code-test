@@ -2,6 +2,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.function.Function;
+
 /*
  *   Please code the tests in the format of reverseArray_returnsExpectedResult. This is an example of how we write our tests at Cardano.
  *
@@ -50,7 +52,16 @@ public class CodeTestSpec {
 
     @Test
     public void composeU_returnsExpectedResult() {
-
+    	// arrange
+    	final int EXPECTED = 6;
+    	
+    	// act
+    	final Function<Integer, Integer> func1 = x -> x + 1;
+    	final Function<Integer, Integer> func2 = x -> x * 2;
+    	final Function<Integer, Integer> resultFunc = CodeTest.composeU(func1, func2);
+    	
+    	// assert
+    	assertEquals(EXPECTED, resultFunc.apply(2));
     }
 
     @Test

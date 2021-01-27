@@ -43,6 +43,12 @@ public class CodeTest {
         }
         resultString += "]";
         System.out.println(resultString);
+        
+        // Point 4: Unify two unary functions
+        System.out.println("STEP 4");
+        Function<Integer, Integer> f1 = x -> x + 1;
+        Function<Integer, Integer> f2 = x -> x * 2;
+        System.out.println(composeU(f1, f2).apply(2));
     }
 
     public static String[] reverseArray(String[] input) {
@@ -75,8 +81,7 @@ public class CodeTest {
     }
 
     public static Function<Integer,Integer> composeU(Function<Integer,Integer> f1, Function<Integer,Integer> f2){
-        // add code here
-        return null;
+    	return f1.andThen(f2);
     }
 
     public static void writeContentsToConsole() {
