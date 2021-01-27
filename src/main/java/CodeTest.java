@@ -62,6 +62,9 @@ public class CodeTest {
         // Point 5: Read a file and prints the content to the console
         System.out.println("STEP 5");
         writeContentsToConsole();
+        
+        // Point 6: Example of how to handle an invalid argument
+        handleInvalidArgument();
     }
 
     public static String[] reverseArray(String[] input) {
@@ -128,7 +131,14 @@ public class CodeTest {
     }
 
     public static void handleInvalidArgument() {
-        // add code here
+        int index = -1;
+        
+    	String[] myArray = new String[10];
+    	if (index < 0) {
+    		throw new IllegalArgumentException("Invalid index value. It should be 0 or higher.");
+    	} else {
+    		System.out.println(myArray[index]);	
+    	}
     }
 
     public static void puzzle() {

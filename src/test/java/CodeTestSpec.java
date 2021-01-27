@@ -1,4 +1,3 @@
-import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
+
+import org.junit.Test;
 
 /*
  *   Please code the tests in the format of reverseArray_returnsExpectedResult. This is an example of how we write our tests at Cardano.
@@ -85,9 +86,9 @@ public class CodeTestSpec {
 		}
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void handleInvalidArgument_returnsExpectedResult() {
-
+    	CodeTest.handleInvalidArgument();
     }
 
     @Test
