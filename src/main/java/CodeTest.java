@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -6,6 +12,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CodeTest {
+	
+	private static final String PATH = "resources/testFile.txt";
+	
     public static void main(String[] args) {
         System.out.println("Please replace this with calls to all completed tests.");
         
@@ -49,6 +58,10 @@ public class CodeTest {
         Function<Integer, Integer> f1 = x -> x + 1;
         Function<Integer, Integer> f2 = x -> x * 2;
         System.out.println(composeU(f1, f2).apply(2));
+        
+        // Point 5: Read a file and prints the content to the console
+        System.out.println("STEP 5");
+        writeContentsToConsole();
     }
 
     public static String[] reverseArray(String[] input) {
@@ -85,7 +98,33 @@ public class CodeTest {
     }
 
     public static void writeContentsToConsole() {
-        // add code here
+    	FileInputStream fileInputStream = null;
+		BufferedReader reader = null;
+		
+		try {
+			fileInputStream = new FileInputStream(PATH);
+			reader = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8));
+			
+			String line;
+			while ((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: File not found.");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("ERROR: An unexpected error ocurred while reading the file.");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+				System.out.println("ERROR: An unexpected error ocurred while closing the file.");
+				e.printStackTrace();
+			}
+		}
     }
 
     public static void handleInvalidArgument() {

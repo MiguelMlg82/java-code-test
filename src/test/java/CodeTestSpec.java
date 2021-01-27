@@ -2,6 +2,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
 
 /*
@@ -66,7 +72,17 @@ public class CodeTestSpec {
 
     @Test
     public void writeContentsToConsole_returnsExpectedResult() {
-
+    	String testString = "test\nString";
+    	
+    	InputStream stream = new ByteArrayInputStream(testString.getBytes(StandardCharsets.UTF_8));
+    	BufferedReader bf = new BufferedReader(new InputStreamReader(stream));
+    	
+    	try {
+    		assertEquals("test", bf.readLine());
+			assertEquals("String", bf.readLine());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @Test
