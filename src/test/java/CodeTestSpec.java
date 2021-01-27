@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
  *   Please code the tests in the format of reverseArray_returnsExpectedResult. This is an example of how we write our tests at Cardano.
@@ -37,7 +38,14 @@ public class CodeTestSpec {
 
     @Test
     public void findWordCount_returnsExpectedResult() {
-
+    	// arrange
+    	final int EXPECTED = 2;
+    	
+    	// act
+    	final int actual = CodeTest.findWordCount(new String("The cat jumped over the mat"), "the");
+    	
+    	// assert
+    	assertEquals(EXPECTED, actual);
     }
 
     @Test
