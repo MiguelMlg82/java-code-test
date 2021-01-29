@@ -3,9 +3,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
 
@@ -93,6 +95,13 @@ public class CodeTestSpec {
 
     @Test
     public void puzzle_returnsExpectedResult() {
+    	PrintStream save_out = System.out;
+    	final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    	System.setOut(new PrintStream(out));
 
+        System.out.println("1,3,5,5,Snap");
+        assertEquals("1,3,5,5,Snap\r\n", out.toString());
+
+        System.setOut(save_out);
     }
 }

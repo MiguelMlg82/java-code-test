@@ -15,6 +15,8 @@ public class CodeTest {
 	
 	private static final String PATH = "resources/testFile.txt";
 	
+	private static Integer[] randomSequence;
+	
     public static void main(String[] args) {
         System.out.println("Please replace this with calls to all completed tests.");
         
@@ -64,7 +66,16 @@ public class CodeTest {
         writeContentsToConsole();
         
         // Point 6: Example of how to handle an invalid argument
-        handleInvalidArgument();
+        try {
+        	handleInvalidArgument();
+        } catch (IllegalArgumentException e) {
+        	System.out.println("STEP 6");
+        	System.out.println("Invalid argument exception thrown");
+        }
+        
+        // Point 7: Using a random sequence of numbers, look for 2 equals and consecutive numbers
+        randomSequence = new Integer[] {1,3,5,5,9};
+        puzzle();
     }
 
     public static String[] reverseArray(String[] input) {
@@ -142,6 +153,21 @@ public class CodeTest {
     }
 
     public static void puzzle() {
-        // add code here
+        int prev = 0;
+        StringBuilder result = new StringBuilder();
+        
+        prev = randomSequence[0];
+        result.append(prev);
+        for (int i = 1; i < randomSequence.length; i++) {
+        	if (prev == randomSequence[i]) {
+        		result.append(",").append(randomSequence[i])
+        			.append(",").append("Snap");
+        		break;
+        	} else {
+        		result.append(",").append(randomSequence[i]);
+        		prev = randomSequence[i];
+        	}
+        }
+        System.out.println(result.toString());
     }
 }
